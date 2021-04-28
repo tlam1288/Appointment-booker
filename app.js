@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/appointment", indexRouter);
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/dbAppointments",
@@ -32,7 +33,11 @@ mongoose.connect(
   }
 );
 
-db.Appointment.create({ firstname: "Ernest", lastname: "Lam" })
+db.Appointment.create({
+  firstname: "Ernest",
+  lastname: "Lam",
+  email: "test@test.com",
+})
   .then((dbUser) => {
     console.log(dbUser);
   })
